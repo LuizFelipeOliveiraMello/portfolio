@@ -1,0 +1,646 @@
+ :root {
+          --color-background: #F4F6FF; /* Cor de fundo */
+          --color-line: #10375C;
+          --color-primary-text: #10375C;
+          --color-text-hover: #3b58f41c;
+          --color-tags: #3b58f41c;
+         }
+	
+	*{
+	    margin: 0px 0px;
+	    padding: 0px 0px;
+	    box-sizing: border-box;
+	}
+	
+        body, html{
+            width: 100%;
+            height: 100%; 
+            font-family: 'JetBrains Mono', serif;
+            background-color: var(--color-background);
+        }
+
+    .app {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+  
+    .tag-input-container {
+      min-width: 90%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 16px;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .tag-input {
+      width: 100%;
+      max-height: 22px;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      background: transparent;
+      white-space: pre-wrap; /* Permite quebra de linha */
+      word-wrap: break-word; /* Garante o ajuste das palavras */
+      overflow-wrap: break-word; /* Garante o ajuste de palavras longas */
+      line-height: 1.5;
+    }
+
+    .tag-input:empty::before {
+      content: attr(placeholder); /* Placeholder visível quando vazio */
+      color: #aaa;
+    }
+
+    /* Estilo para as tags */
+    .tag {
+       color: #007bff; /* Azul para "tag:..." */
+       margin-top: 10px;
+       padding: 3px 5px;
+       border-radius: 3px;
+       background: var(--color-accent);
+    }
+
+    /* Estilo para as divs de resultado */
+    .result {
+      display: none; /* Escondido por padrão */
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #007bff;
+      border-radius: 8px;
+      background-color: #eaf4ff;
+      color: #007bff;
+      width: 400px;
+    }
+    
+
+    
+    header{
+	    width: 100%;
+	    padding: 20px;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    border-bottom: 2px solid var(--color-line);	
+        }
+	
+	main {
+	    width: 100%;
+	    display: flex;
+	    padding-top: 70px; 
+	    flex-direction: column;
+	    gap: 90px;
+	    align-items: center;
+	    position: relative;
+	    transition: all 0.5s ease;
+	    left: 0;
+	    bottom: 0;
+	}
+	
+	main .title-container{
+	    color: var(--color-primary-text);
+	}
+    nav {
+      position: relative;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      position: relative;
+      padding: 5px 10px;
+    }
+
+    nav a:hover {
+      color: var(--color-text-hover);
+    }
+
+    .bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--color-line);
+      width: 60px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+	
+	main .search-container {
+	    padding: 10px;
+	    width:100%;
+	    display:flex;
+	    justify-content:center;
+	    position: relative;
+	}
+	
+	main .search-container .searchBar{
+		width:85%;
+		border-radius: 4px;
+		border: 2px solid #433878;
+		padding: 4px 0px;
+		background: #ffffff;
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+	}
+	
+	main .tag-input-container .history{
+		width:5%;
+		min-height: 30px;
+		background: #ffffff;
+	        display: flex;
+		justify-content: center;
+  		align-items: center;
+	}
+	
+	main .tag-input-container .history .line{
+		position: absolute;
+		margin-left: 35px;
+		width: 1px;
+		height: 25px;
+		background: #433878;
+	}	
+	
+	main .search-container .searchBar .input{
+		width:93%;
+		display: flex;
+		align-items: center
+	}
+	
+	main .search-container .searchBar .input:focus{
+	        outline: none;
+	}
+	
+	
+	
+	main .howto-container {
+	    width: 100%;
+	    padding: 15px 20px;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	}
+	
+	main .howto-container h4{
+	    text-transform: uppercase;
+	    padding-bottom: 15px;
+	    color: #433878;
+	}
+	
+	main .howto-container .line{
+	    width: 150px;
+	    padding-top: 2px;
+	    position: absolute ;
+	    margin-top:36px;
+	    background: #433878;
+	}
+	
+	main .howto-container .line-full{
+	    width: 100%;
+	    padding-top: 2px;
+	    background: var(--color-line);
+	}
+	
+	main .howto-container .commands-container{
+	    display: grid;
+	    grid-template-columns: auto auto auto auto;
+	    padding: 40px 10px;
+	    color: var(--color-primary-text);
+	    
+	}
+	
+	main .howto-container .commands-container .command {
+	   padding: 25px 25px;
+	}
+	
+	main .howto-container .commands-container .command{
+	    display:flex;
+	    flex-direction: column;
+	    align-items: center;
+	}
+	
+	
+	main .howto-container .commands-container .command .command-title {
+	    padding-bottom: 15px;
+	    opacity: 0.5;
+	}
+	
+	main .howto-container .commands-container .command .command-content{
+	    display:flex;
+	    flex-direction: column;
+	}
+
+	main .howto-container .commands-container .command .command-content code {
+	    margin-top: 10px;
+	    padding: 3px 5px;
+	    border-radius: 3px;
+	    background: var(--color-tags);
+	}
+	
+	main .howto-container .commands-container .command .command-content code .blue{
+	    color: #4393e7;
+	}
+	
+	main .howto-container .commands-container .command .command-content code .grey{
+	    color: var(--color-primary-text);
+	}
+	
+	main .focus-container{
+          display: flex;
+      	  align-items: center;
+      	  background-color: #292a36;
+      	  border-radius: 5px;
+      	  padding: 5px 10px;
+      	  width: 80%;
+   	  max-width: 600px;
+    	  flex-wrap: wrap;
+	}
+	
+	    .tag-input-container {
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 16px;
+            background-color: #fff;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .secondPage {
+            width: 100%;
+	    display: flex;
+	    padding-top: 70px; 
+	    flex-direction: column;
+	    gap: 90px;
+	    align-items: center;
+	    left: 0;
+	    bottom: 0;
+	    position: relative;
+	    transition: all 0.3s ease;
+        }
+        
+        .about-me {
+            position:relative;
+            left:0;
+            bottom:0;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+        }
+        
+
+    section#sobre-mim {
+      margin-top: 90px;
+      width: 100%;
+      max-width: 1200px;
+      background-color: var(--color-background);
+      padding: 1rem;
+      position: relative;
+    }
+
+    .header-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-section img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--retro-orange);
+      box-shadow: 0 0 0 5px var(--retro-pink);
+    }
+
+    .title-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .title-info h1 {
+      font-size: 1.2rem;
+      color: var(--retro-purple);
+    }
+
+    .title-info h2 {
+      font-size: 1rem;
+      color: var(--retro-orange);
+    }
+
+    .intro-text {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0; /* início */
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1; /* término */
+      }
+    }
+
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Ajuste para telas menores */
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Seções internas */
+    .about-block {
+      background-color: #fafafa;
+      border: 2px solid var(--retro-pink);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      animation: slideIn 0.8s ease forwards;
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .about-block h3 {
+      margin-bottom: 0.5rem;
+      color: var(--retro-orange);
+    }
+
+    .about-block p {
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    /* ===================== */
+    /* LINKS IMPORTANTES, CTAs */
+    /* ===================== */
+    .links-row,
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Ícones inline em SVG para GitHub e LinkedIn */
+    .icon-github,
+    .icon-linkedin {
+      width: 24px;
+      height: 24px;
+      fill: var(--color-flag);
+      transition: transform 0.3s, fill 0.3s;
+    }
+
+    .icon-github:hover,
+    .icon-linkedin:hover {
+      fill: var(--color-flags);
+      transform: scale(1.2);
+    }
+
+    .links-row a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--retro-purple);
+      font-weight: bold;
+      border-bottom: 2px solid transparent;
+      transition: border-bottom 0.3s;
+    }
+
+    .download-cv {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--color-tags);
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+    .download-cv:hover {
+      background-color: var(--retro-pink);
+      transform: scale(1.05);
+    }
+
+ 
+    .inspirational-quote {
+      margin-top: 2rem;
+      font-style: italic;
+      font-weight: bold;
+      text-align: center;
+      border-top: 2px dashed var(--retro-purple);
+      padding-top: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* RESPONSIVIDADE ADICIONAL */
+    @media (max-width: 480px) {
+      .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-section img {
+        margin-bottom: 1rem;
+      }
+    }
+    
+     section#projetos {
+      width: 100%;
+      max-width: 1200px;
+      background: transparent;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .section-title h1 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-title p {
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .category-filter {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .category-filter button {
+      background-color: var(--color-tags);
+      color: black;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+      font-weight: bold;
+    }
+    .category-filter button:hover {
+      background-color:  #F26B0F;
+      transform: scale(1.05);
+    }
+    .category-filter button.active {
+      background-color:  #F26B0F;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 992px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      background-color: #fafafa;
+      border: 2px solid var(--retro-pink);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: scale(0.95);
+      animation: cardLoad 0.7s forwards ease;
+      position: relative;
+    }
+
+    @keyframes cardLoad {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .proj-image-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .proj-image-container img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .project-card:hover .proj-image-container img {
+      transform: scale(1.1);
+    }
+
+    .proj-content {
+      padding: 1rem;
+    }
+    .proj-content h3 {
+      margin-bottom: 0.5rem;
+      color: var(--retro-orange);
+      font-size: 1.2rem;
+    }
+    .proj-content p {
+      color: #444;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* ÍCONES DE TECNOLOGIAS */
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    .tech-icons span {
+      background: var(--color-tags);
+      color: black;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* BOTÃO DE ACESSO AO PROJETO */
+    .proj-content a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--color-tags);
+      color: black;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+    .proj-content a:hover {
+      background-color: var(--retro-pink);
+      transform: scale(1.05);
+    }
+
+    /* DEMO - MENSAGEM CASO NÃO ENCONTRE PROJETOS */
+    .no-projects {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+    }
