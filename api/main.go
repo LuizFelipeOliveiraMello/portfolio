@@ -34,7 +34,7 @@ func main() {
     r.GET("/projetos", getProjetos)
 
     // Inicia o servidor
-    if err := r.Run("https://portfolio-mxuxva.fly.dev/projetos"); err != nil {
+    if err := r.Run("66.241.125.173:8080"); err != nil {
         log.Fatal(err)
     }
 }
