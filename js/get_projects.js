@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
          async function fetchProjects() {
             try {
-                const response = await fetch('http://localhost:8080/projetos');
+                const response = await fetch('https://port-api.fly.dev/projetos');
                 if (!response.ok) {
                     throw new Error('Erro ao buscar projetos');
                 }
