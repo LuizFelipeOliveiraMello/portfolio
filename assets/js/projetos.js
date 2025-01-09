@@ -78,11 +78,10 @@ function projetos(section) {
                     fill="rgba(255,255,255,1)"
                   />
                 </svg>
-              </a>
             </div>
-                      <p>Um ideia de site para fazer planos de carreira.</p>
-          <p>HTML - CSS - JS - ReactJS</p>
           </div>
+                                <p>Um ideia de site para fazer planos de carreira.</p>
+          <p>HTML - CSS - JS - ReactJS</p>
         </div>
         <div class="card">
           <h3>Pagina de Login Conectado ao MySQL</h3>
