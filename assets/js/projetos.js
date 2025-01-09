@@ -80,9 +80,9 @@ function projetos(section) {
                 </svg>
               </a>
             </div>
-          </div>
-          <p>Um ideia de site para fazer planos de carreira.</p>
+                      <p>Um ideia de site para fazer planos de carreira.</p>
           <p>HTML - CSS - JS - ReactJS</p>
+          </div>
         </div>
         <div class="card">
           <h3>Pagina de Login Conectado ao MySQL</h3>
