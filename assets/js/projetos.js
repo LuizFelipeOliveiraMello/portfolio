@@ -35,14 +35,14 @@ function projetos(section) {
           <p>HTML - CSS - JS - PHP - Apache - Sqlite</p>
         </div>
         <div class="card">
-          <h3>Desafio 21 dias de código</h3>
+          <h3>TodoList com NextJS</h3>
           <div class="img-wrapper">
             <img
-              src="./assets/images/projects/desafio-de-codigo.jpg"
-              alt="Imagem tema do projeto de desafio de código."
+              src="./assets/images/projects/todoList.gif"
+              alt="Imagem do projeto."
             />
             <div class="buttons">
-              <a href="https://github.com/lucyanovidio/desafio-21-dias-codigo-rocketseat" target="_blank" title="Repositório no Github">
+              <a href="https://github.com/LuizFelipeOliveiraMello/todolist_APP" target="_blank" title="Repositório no Github">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -72,16 +72,14 @@ function projetos(section) {
             </div>
           </div>
           <p>
-            Desafio promovido pela Rocketseat com 21 projetos diferentes.
+            Projeto simples mas legal com NextJS fazendo um todoList
           </p>
-          <p>HTML - CSS - JS</p>
+          <p>HTML - CSS - JS - NextJS</p>
         </div>
         <div class="card">
-          <h3>Nutricionista Roberto - Links</h3>
+          <h3>Projeto Landing Page Plano Carreira</h3>
           <div class="img-wrapper">
-            <img src="./assets/images/projects/roberto-links.gif" alt="Imagem do projeto." />
-            <div class="buttons">
-              <a href="https://github.com/lucyanovidio/robertoovidionutri-bio" target="_blank" title="Repositório no Github">
+            <img src="./assets/images/projects/planoCarreira.gif" alt="Imagem do projeto." />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -147,8 +145,8 @@ function projetos(section) {
               </a>
             </div>
           </div>
-          <p>Página de contato para consultas desenvolvida para cliente.</p>
-          <p>HTML - CSS - JS</p>
+          <p>Um ideia de site para fazer planos de carreira.</p>
+          <p>HTML - CSS - JS - ReactJS</p>
         </div>
         <div class="card">
           <h3>Doctor Care</h3>
